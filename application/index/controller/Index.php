@@ -25,6 +25,7 @@ class Index extends Controller
      *
      * */
     public function index()
+
     {
         if($this->request->isPost()){
 
@@ -35,24 +36,18 @@ class Index extends Controller
                 ->find();
             Session::set($this->loginUserKey, $user);
 
-            if($user) $this->success('登录成功', url($this->redirect));
-
+            if($user) return  $this->fetch('index'); //$this->success('登录成功', url($this->redirect));
 
         }
         return  $this->fetch('login');
 
-
     }
-
     public function hello($name = 'ThinkPHP5')
     {
-        dump($this->request);die;
         return 'hello,' . $name;
     }
-    public function login(){
-        if($this->request->isPost()){
-            dump(5145);
-            return  $this->fetch();
-        }
+    public function user()
+    {
+        return $this->fetch('index/qdAPI');
     }
 }
